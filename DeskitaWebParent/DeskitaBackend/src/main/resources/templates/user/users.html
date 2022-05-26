@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="components/head_title :: page_head('Users - Deskita Admin')">
+<style>
+
+</style>
+<body>
+<div class="container">
+<nav th:replace="components/Navigation :: navigation"></nav>
+<h1>Users</h1>
+<a th:href="@{/users/new}">Create new user</a>
+<div>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					User Id
+				</th>
+				<th>
+					Photos
+				</th>
+				<th>
+					First Name
+				</th>
+				<th>
+					Last Name
+				</th>
+				<th>
+					Roles
+				</th>
+				<th>
+					Enabled
+				</th>
+				<th>Action</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user:${listUsers}">
+				<th >[[${user.id}]]</th>
+				<th ></th>
+				<th >[[${user.firstName}]]</th>
+				<th >[[${user.lastName}]]</th>
+				<th >[[${user.roles}]]</th>
+				<th > <a th:if="${user.enabled==true}" class="fas fa-check"	href="#"></a></th>
+				<th>					
+					<a class="fas fa-edit" th:href="@{'/users/edit/'+${user.id}}"></a>
+					<a class="far fa-trash-alt" th:href="@{'/users/delete/'+${user.id}}"></a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation example">
+  <ul class="pagination">
+     <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"><a class="page-link" th:href="@{'/users/page/'+${i}}" >[[${i}]]</a></li>
+  </ul>
+</nav>
+</div>
+</div>
+	
+</body>
+</html>
