@@ -12,9 +12,7 @@ public class CustomerAuthentication {
 
 	public static Customer getAuthenticatedCustomer(HttpServletRequest request, CustomerService customerService) throws Exception 
 			 {
-		
-		
-		
+				
 		String email = AccountAuthentication.getEmailOfAuthenticatedCustomer(request);
 		
 		if (email == null) {

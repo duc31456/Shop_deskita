@@ -1,7 +1,5 @@
 package com.deskita.admin.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.deskita.admin.service.BrandService;
 import com.deskita.common.entity.Brand;
-import com.deskita.common.entity.Category;
 
 @Controller
 public class BrandController {
@@ -84,6 +81,12 @@ public class BrandController {
 		model.addAttribute("brand", brand);
 		model.addAttribute("actionSave", "/DeskitaAdmin/brands/save/" + brand.getId());
 		return "brand/brand_form";
+	}
+	
+	@GetMapping("/brands/delete/{id}")
+	public String deleteCategoryById(@PathVariable(name="id") Integer id) {
+		service.deleteBrandById(id);
+		return "redirect:/brands";
 	}
 
 }

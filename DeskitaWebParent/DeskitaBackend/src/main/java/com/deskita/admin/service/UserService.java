@@ -93,8 +93,6 @@ public class UserService {
 	
 	public void updateAccount(User userInForm) {
 		User userInDB=repo.findById(userInForm.getId()).get();
-		userInDB.setFirstName(userInForm.getFirstName());
-		userInDB.setLastName(userInForm.getLastName());
 		userInDB.setEnabled(userInForm.isEnabled());
 		userInDB.setRoles(userInForm.getRoles());
 		repo.save(userInDB);

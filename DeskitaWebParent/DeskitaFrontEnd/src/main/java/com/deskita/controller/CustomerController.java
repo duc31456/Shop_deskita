@@ -44,11 +44,11 @@ public class CustomerController {
 			service.updateResetPasswordToken(token, email);
 			String resetPasswordLink= request.getRequestURL().toString().replace(request.getServletPath(), "")+"/reset-password?token="+token;
 			service.sendEmail(email, resetPasswordLink);
-			model.addAttribute("message","We have sent a reset password link to your email. Please check.");
+			model.addAttribute("message","Chúng tôi đã gửi một email đổi mật khẩu tới tài khoản của ban.Hãy kiểm tra!");
 		}catch(CustomerNotFoundException ex){
 			model.addAttribute("error",ex.getMessage());
 		}catch(UnsupportedEncodingException | MessagingException e) {
-			model.addAttribute("error","Error while sending email");
+			model.addAttribute("error","Lỗi trong khi đang gửi mail");
 		}
 		return "authen/forgot-password-form";
 	}
@@ -59,7 +59,7 @@ public class CustomerController {
 		Customer customer=service.getByResetPasswordToken(token);
 		model.addAttribute("token",token);
 		if(customer==null) {
-			model.addAttribute("message","invalid token");
+			model.addAttribute("message","Không tìm thấy token!");
 			return "authen/message";
 		}
 		return "authen/reset-password-form";
@@ -70,14 +70,14 @@ public class CustomerController {
 		String token=request.getParameter("token");
 		String password=request.getParameter("password");
 		Customer customer=service.getByResetPasswordToken(token);
-		model.addAttribute("title","Reset your Password");
+		model.addAttribute("title","Đổi mật khẩu");
 		if(customer==null) {
-			model.addAttribute("message","Invalid Token");
+			model.addAttribute("message","Không tìm thấy token!");
 			return "authen/message";
 		}
 		else {
 			service.updatePasswordToken(customer, password);
-			model.addAttribute("message","You have successfully changed your password");
+			model.addAttribute("message","Bạn đã thay đổi mật khẩu thành công!");
 		}
 		return "authen/message";
 	}

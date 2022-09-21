@@ -3,7 +3,6 @@ package com.deskita.admin.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.deskita.admin.service.OrderService;
-import com.deskita.common.entity.Customer;
 import com.deskita.common.entity.Order;
 
 
@@ -32,23 +30,21 @@ public class OrderController {
 	@GetMapping("/order/{orderId}")
 	public String orderDetail(Model model,
 			@PathVariable(name = "orderId") Integer id) {
-		Order order=service.findById(id);
-		
+		Order order=service.findById(id);		
 		model.addAttribute("order",order);
-	
 		return "order/order_detail";
 	}
 	
 	@PostMapping("/update-status")
 	public String updateStatus(@RequestParam(name="orderId",required = false) Integer id,
-			@RequestParam(name="status",required=false) String status
-			) {
+			@RequestParam(name="status",required=false) String status, Model model
+			){
 		Order order=service.findById(id);
 		
 		try {
 			service.updateStatus(order, status);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return "redirect:/order/"+order.getId();

@@ -7,30 +7,34 @@
 <body>
 	<div class="container">
 		<nav th:replace="components/Navigation :: navigation"></nav>
-		<h1>Brands</h1>
+		<h2 style="font-weight: bolder;">Quản lý thương hiệu sản phẩm</h2>
 		<div>
-			<form th:action="${actionSave}" th:method="POST" th:object="${brand}" enctype="multipart/form-data">
-			<input type="hidden" th:field="*{id}" />
+			<form th:action="${actionSave}" th:method="POST" th:object="${brand}"
+				enctype="multipart/form-data">
+				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 
-					<label>Brand name</label> <input type="text" th:name="name"
-						th:value="${brand.name}" th:field="*{name}" required minlength="1"
+					<label>Tên thương hiệu</label> <input type="text" th:name="name"
+						th:value="${brand.name}" th:field="*{name}" required min="1"
 						maxlength="128" class="form-control"
 						placeholder="Enter brand name:" />
 
 				</div>
 
-				<input type="file" id="files" name="fileImage" accept="image/png, image/jpeg, image/jpg"/> <img id="image" th:src="@{/images/brands/}+${brand.logo}"width="300"
-
-					height="250" />
-					<button type="submit" value="Save" class="btn btn-primary">Submit</button>
-		<button type="button" class="btn btn-secondary">
-			<a th:href="@{/brands}">Cancel</a>
-		</button>
-		</form>
+				<input type="file" id="files" name="fileImage"
+					accept="image/png, image/jpeg, image/jpg, image/webp" required="required" />
+				<div style="width: 210px; display: inline-block; margin: 10px;">
+					<img id="image" th:src="@{/images/brands/}+${brand.logo}"
+						style="object-fit: contain; width: 100%; height: 100%;" />
+				</div>
+				<button type="submit" value="Save" class="btn btn-primary">Xác
+					nhận</button>
+				<button type="button" class="btn btn-secondary">
+					<a th:href="@{/brands}">Hủy</a>
+				</button>
+			</form>
 		</div>
-		
-	</div>
+
 	</div>
 	<script type="text/javascript">
 		document.getElementById("files").onchange = function() {
@@ -44,18 +48,6 @@
 			// read the image file as a data URL.
 			reader.readAsDataURL(this.files[0]);
 		};
-		$('.form-check-input-brand').change(function() {
-			if (this.checked) {
-				$('.form-check-input-brand').prop('checked', false);
-				$(this).prop('checked', true);
-			}
-		})
-		$('.form-check-input').change(function() {
-			if (this.checked) {
-				$('.form-check-input').prop('checked', false);
-				$(this).prop('checked', true);
-			}
-		})
 	</script>
 </body>
 </html>

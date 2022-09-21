@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
->
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="components/head_title :: page_head('Home - Deskita Admin')">
+<head
+	th:replace="components/head_title :: page_head('Home - Deskita Admin')">
 
 </head>
 <style>
-		
 </style>
 <body>
 
-<div class="container index">
-<nav th:replace="components/Navigation :: navigation"></nav>
-<h1>Welcome asssse</h1>
-<a th:href="@{/account}" ></a>
-<span sec:authentication="principal.authorities"></span>
-</div>
-	
+	<div class="container index">
+		<nav th:replace="components/Navigation :: navigation"></nav>
+		<a th:href="@{/account}"></a>
+		<div class="large-8 large-centered column">
+			<div class="title">
+				<h1 style="font-weight: bolder;">Welcome</h1>
+				<p>Trang web quản lý shop deskita cung cấp đầy đủ các chức năng
+					quản lý <span
+			sec:authentication="principal.authorities"></span></p>
+					
+			</div>
+		</div>
+		<img
+			src="https://media1.giphy.com/media/xT77Y1T0zY1gR5qe5O/giphy.gif?cid=ecf05e475u79e9vgh4vwx8hsa5ue7iibc6sg2kmffcfg84op&rid=giphy.gif&ct=g">
+		
+		<div class="container-fluid bg-dark" style="margin-top: 110px;">
+			<div class="row py-2 px-lg-5">
+				<div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+					<div class="d-inline-flex align-items-center text-white">
+						<small><i class="fa fa-phone-alt mr-2"></i>+869378643</small> <small
+							class="px-3">|</small> <small><i
+							class="fa fa-envelope mr-2"></i>n18dccn028@student.ptithcm.edu.vn</small>
+					</div>
+				</div>
+				<div class="col-lg-6 text-center text-lg-right">
+					<div class="d-inline-flex align-items-center">
+						<a class="text-white px-2" href=""> <i
+							class="fab fa-facebook-f"></i>
+						</a> <a class="text-white px-2" href=""> <i class="fab fa-twitter"></i>
+						</a> <a class="text-white px-2" href=""> <i
+							class="fab fa-linkedin-in"></i>
+						</a> <a class="text-white px-2" href=""> <i
+							class="fab fa-instagram"></i>
+						</a> <a class="text-white pl-2" href=""> <i class="fab fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

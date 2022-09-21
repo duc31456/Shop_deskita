@@ -58,8 +58,6 @@ public class ProductController {
 	public String pagingProduct(@PathVariable(name="currentPage") int currentPage,Model model) {
 		List<Product> listProducts=service.pagingProduct(currentPage).getContent();
 		Long total=(service.pagingProduct(currentPage).getTotalElements()/PRODUCT_PER_PAGE) +1;
-		System.out.println(listProducts);
-		
 		model.addAttribute("listProducts",listProducts);
 		model.addAttribute("totalPage",total);
 		return "product/products";

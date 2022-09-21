@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="components/head_title :: page_head('Categories - Deskita Admin')">
+<head
+	th:replace="components/head_title :: page_head('Categories - Deskita Admin')">
 <style>
-
 </style>
 <body>
-<div class="container">
-<nav th:replace="components/Navigation :: navigation"></nav>
-<h1>Categories</h1>
-<a th:href="@{/categories/new}">Create new category</a>
-<div>
-	<table>
-		<thead>
-			<tr>
-				<th>
-					Category Id
-				</th>
-				<th>
-					Name
-				</th>
-				<th>Action</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="category:${listCategories}">
-				<th >[[${category.id}]]</th>
-				<th >[[${category.name}]]</th>
-				<th>					
-					<a class="fas fa-edit" th:href="@{'/categories/edit/'+${category.id}}"></a>
-				</th>
-			</tr>
-		</tbody>
-	</table>
-	<nav aria-label="Page navigation example">
-  <ul class="pagination">
-     <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"><a class="page-link" th:href="@{'/categories/page/'+${i}}" >[[${i}]]</a></li>
-  </ul>
-</nav>
-</div>
-</div>
-	
+	<div class="container">
+		<nav th:replace="components/Navigation :: navigation"></nav>
+		<h2 style="font-weight: bolder;">Quản lý loại sản phẩm</h2>
+		<a th:href="@{/categories/new}">Thêm mới loại sản phẩm</a>
+		<div>
+			<table class="table table-sm table-bordered table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Mã loại sản phẩm</th>
+						<th scope="col">Tên loại sản phẩm</th>
+						<th scope="col">Tùy chỉnh</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="category:${listCategories}">
+						<th scope="row">[[${category.id}]]</th>
+						<th>[[${category.name}]]</th>
+						<th><a class="fas fa-edit"
+							th:href="@{'/categories/edit/'+${category.id}}"></a> <a
+							class="far fa-trash-alt"
+							th:href="@{'/categories/delete/'+${category.id}}"></a></th>
+					</tr>
+				</tbody>
+			</table>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"><a
+						class="page-link" th:href="@{'/categories/page/'+${i}}">[[${i}]]</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
 </body>
 </html>

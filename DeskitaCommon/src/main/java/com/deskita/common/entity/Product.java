@@ -55,12 +55,15 @@ public class Product {
 			)
 	private Category category =new Category();	
 	
-	
-	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+			name="products_product_details",
+			joinColumns = @JoinColumn(name="product_id"),
+			inverseJoinColumns = @JoinColumn(name="product_details_id")
+			)
+	private ProductDetail productDetail = new ProductDetail();
+
 	private Date createAt;
-	
-	
-	
 	
 	public Date getCreateAt() {
 		return createAt;

@@ -15,11 +15,11 @@
 		box-shadow: 1px 1px 15px #eaeaea;
 	}
 	.navbar-light .navbar-nav .nav-link{
-		    font-size: 20px;
+		    font-size: 17px;
 	}
 	
 	*{
-		font-size: 18px;
+		font-size: 17px;
 	}
 </style>
 	<div class="container">
@@ -33,39 +33,39 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" th:href="@{/}">Home(current)</a>
+        <a class="nav-link" th:href="@{/}" style="font-weight: 900;">Trang chủ</a>
       </li>
       <li class="nav-item" sec:authorize="hasAuthority('Admin')">
-        <a class="nav-link" th:href="@{/users}">Users</a>
+        <a class="nav-link" th:href="@{/users}" style="font-weight: 900;">Bộ phận</a>
       </li>
      <th:block sec:authorize="hasAnyAuthority('Admin','Editor')">
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/categories}">Categories</a>
+        <a class="nav-link " th:href="@{/categories}" style="font-weight: 900;">Loại sản phẩm</a>
       </li>
      </th:block>
        <th:block sec:authorize="hasAnyAuthority('Admin','Editor')">
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/brands}">Brands</a>
+        <a class="nav-link " th:href="@{/brands}" style="font-weight: 900;">Thương hiệu</a>
       </li>
        </th:block>
         <th:block sec:authorize="hasAnyAuthority('Admin','Editor','Salesperson')">
        <li class="nav-item">
-        <a class="nav-link " th:href="@{/products}">Products</a>
+        <a class="nav-link " th:href="@{/products}" style="font-weight: 900;">Sản phẩm</a>
       </li>
        </th:block>
        <th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/customers}">Customers</a>
+        <a class="nav-link " th:href="@{/customers}" style="font-weight: 900;">Khách hàng</a>
       </li>
       </th:block>
       <th:block sec:authorize="hasAnyAuthority('Admin','Salesperson','Shipper')">
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/orders}">Orders</a>
+        <a class="nav-link " th:href="@{/orders}" style="font-weight: 900;">Đơn hàng</a>
       </li>
       </th:block>
      <th:block sec:authorize="hasAnyAuthority('Admin')">
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/analytics}">Analytics</a>
+        <a class="nav-link " th:href="@{/analytics}" style="font-weight: 900;">Thống kê</a>
       </li>
       </th:block>
       
@@ -74,11 +74,11 @@
      <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle user_avatar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="fas fa-user fa-2x"></span>
-    <a class="nav-link"   th:href="@{/account}" ><span sec:authentication="principal.Username"></span></a>
+    <a class="nav-link" th:href="@{/account}" ><span sec:authentication="principal.Username"></span></a>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item"  th:href="@{/account}">My profile</a>
-    <a class="dropdown-item" id="logoutLink" th:href="@{/logout}">Logout</a>
+  <a class="dropdown-item"  th:href="@{/account}">Quản lý thông tin</a>
+    <a class="dropdown-item" id="logoutLink" th:href="@{/logout}">Đăng xuất</a>
    
   </div>
 </div>
@@ -93,6 +93,5 @@
 		});
 	</script>
 </nav>
-
 </body>
 </html>

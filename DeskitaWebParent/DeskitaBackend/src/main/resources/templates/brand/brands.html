@@ -7,28 +7,33 @@
 <body>
 	<div class="container">
 		<nav th:replace="components/Navigation :: navigation"></nav>
-		<h1>Brands</h1>
-		<a th:href="@{/brands/new}">Create new brand</a>
+		<h2 style="font-weight: bolder;">Quản lý thương hiệu sản phẩm</h2>
+		<a th:href="@{/brands/new}"> Thêm thương hiệu</a>
 		<div>
-			<table>
-				<thead>
+			<table class="table table-bordered table-hover">
+				<thead class="thead-dark">
 					<tr>
-						<th>Brand Id</th>
-						<th>Logo</th>
-						<th>Name</th>
-						<th>Action</th>
+						<th scope="col">Mã thương hiệu</th>
+						<th scope="col">Nhãn hiệu</th>
+						<th scope="col">Tên nhãn hiệu</th>
+						<th scope="col">Tùy chỉnh</th>
 
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="brand:${listBrands}">
-						<th>[[${brand.id}]]</th>
-						<th><img
-							th:src="'/DeskitaAdmin/images/brands/'+${brand.logo}"
-							style="width: 80px" /></th>
-						<th>[[${brand.name}]]</th>
-						<th><a class="fas fa-edit"
-							th:href="@{'/brands/edit/'+${brand.id}}"></a></th>
+						<th scope="row">[[${brand.id}]]</th>
+						<th scope="row">
+							<div style="width: 110px; display: inline-block; margin: 10px;">
+								<img th:src="'/DeskitaAdmin/images/brands/'+${brand.logo}"
+									style="object-fit: contain; width: 80px; height: 80px;" />
+							</div>
+						</th>
+						<th scope="row">[[${brand.name}]]</th>
+						<th scope="row"><a class="fas fa-edit"
+							th:href="@{'/brands/edit/'+${brand.id}}"></a> <a
+							class="far fa-trash-alt"
+							th:href="@{'/brands/delete/'+${brand.id}}"></a></th>
 					</tr>
 				</tbody>
 			</table>

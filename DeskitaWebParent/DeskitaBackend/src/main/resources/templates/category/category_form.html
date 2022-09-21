@@ -7,20 +7,20 @@
 <body>
 	<div class="container">
 		<nav th:replace="components/Navigation :: navigation"></nav>
-		<h1>Categories</h1>
+		<h1>Loại sản phẩm</h1>
 		<div>
 			<form th:action="${actionSave}" th:method="POST"
 				th:object="${category}">
 				<div class="form-group">
-					<label>Category name</label> <input type="text" th:name="name"
+					<label>Tên loại sản phẩm</label> <input type="text" th:name="name"
 						th:value="${category.name}" th:field="*{name}" minlength="2"
 						maxlength="50" class="form-control"
-						placeholder="Enter category name:" />
+						placeholder="Enter tên thể loại sản phẩm:" />
 				</div>
 		</div>
-		<button type="submit" value="Save" class="btn btn-primary">Submit</button>
+		<button type="submit" value="Save" class="btn btn-primary">Xác nhận</button>
 		<button type="button" class="btn btn-secondary">
-			<a th:href="@{/categories}">Cancel</a>
+			<a th:href="@{/categories}">Quay lại</a>
 		</button>
 		</form>
 	</div>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.deskita.admin.service.CategoryService;
 import com.deskita.common.entity.Category;
-import com.deskita.common.entity.Product;
 
 @Controller
 public class CategoryController {
@@ -69,6 +68,12 @@ public class CategoryController {
 		model.addAttribute("category",category);	
 		model.addAttribute("actionSave","/DeskitaAdmin/categories/save/"+category.getId());
 		return "category/category_form";
+	}
+	
+	@GetMapping("/categories/delete/{id}")
+	public String deleteCategoryById(@PathVariable(name="id") Integer id) {
+		service.deleteCategoryById(id);
+		return "redirect:/categories";
 	}
 	
 }

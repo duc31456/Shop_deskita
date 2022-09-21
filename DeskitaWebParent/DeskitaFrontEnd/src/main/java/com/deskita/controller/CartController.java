@@ -27,12 +27,10 @@ public class CartController {
 	
 	@PostMapping("/add-cart/{productId}")
 	public String viewCart(
-			
 			@PathVariable(name="productId") int productId,
 			@RequestParam(name="product_detail_name_selected",required = false) String productDetailName,
 			
 			Model model) {
-		
 		Product product=productservice.findProductById(productId);
 		ProductDetail productDetail=productservice.getProductDetailByProDuctIdAndName(productId, productDetailName);
 		

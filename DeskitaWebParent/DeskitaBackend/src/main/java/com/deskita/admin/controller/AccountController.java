@@ -35,6 +35,6 @@ public class AccountController {
 	@PostMapping("/account/update")
 	public String saveDetails(User user, RedirectAttributes redirectAttributes,@AuthenticationPrincipal DeskitaUserDetails loggedUser) {
 		service.updateAccount(user);
-		return "redirect:/account";
+		return "redirect:/users";
 	}
 }

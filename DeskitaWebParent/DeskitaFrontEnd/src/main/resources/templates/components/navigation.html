@@ -40,18 +40,18 @@
 </form>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav" style="margin-left: auto!important">
-      <li class="nav-item ">
-        <a class="nav-link" th:href="@{/}" >[[#{label.home}]]</a>
+      <li class="nav-item " style="font-weight: bolder;">
+        <a class="nav-link" th:href="@{/}" >Trang chủ</a>
       </li>
    
       
        <th:block sec:authorize="!isAuthenticated()">
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/login}">Login</a>
+      <li class="nav-item" style="font-weight: bolder;">
+        <a class="nav-link" th:href="@{/login}">Đăng nhập</a>
       </li>
      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/register}">Register</a>
+      <li class="nav-item" style="font-weight: bolder;">
+        <a class="nav-link " th:href="@{/register}">Đăng ký</a>
       </li>
   
        </th:block>
@@ -64,10 +64,10 @@
     <a class="nav-link"   th:href="@{/account}" sec:authentication="principal.fullName"></a>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item"   th:href="@{/account}" >Profile</a>
-  <a class="dropdown-item"   th:href="@{/my-order}" >My Order</a>
-    <a class="dropdown-item" id="logoutLink" th:href="@{/logout}">Logout</a>
-   <a class="dropdown-item" th:href="@{/change-password}">Change Password</a>
+  <a class="dropdown-item"   th:href="@{/account}" >Thông tin cá nhân</a>
+  <a class="dropdown-item"   th:href="@{/my-order}" >Đơn hàng của tôi</a>
+    <a class="dropdown-item" id="logoutLink" th:href="@{/logout}">Đăng xuất</a>
+   <a class="dropdown-item" th:href="@{/change-password}">Thay đổi mật khẩu</a>
   </div>
   
 </div>

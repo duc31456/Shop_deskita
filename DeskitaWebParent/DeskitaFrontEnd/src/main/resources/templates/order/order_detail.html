@@ -26,8 +26,8 @@
 }
 
 .product-qty span {
-    font-size: 12px;
-    color: #dedbdb
+    font-size: 15px;
+	color: red;
 }
 .btn_status{
 	float:right;
@@ -42,16 +42,16 @@
             <div class="card">
               
                 <div class="invoice p-5">
-                    <h5 >Trạng thái đơn hàng 
+                    <h5 >Trạng thái đơn hàng
                     <span th:text="${order.status}"></span>
                     <th:block th:switch="${order.status.name()}">
                     	<button th:case="'NEW'" type="submit" th:name="status" th:value="CANCEL" class="btn_status btn btn-danger">Hủy đơn hàng</button>
                     	
-                    	<button th:case="'DELIVERED'" type="submit" th:name="status" th:value="PAID" class="btn_status btn btn-success">Đã nhận đơn hàng</button>
+                    	<button th:case="'DELIVERED'" type="submit" th:name="status" th:value="PAID" class="btn_status btn btn-success">Đơn hàng đã được thanh toán</button>
                     </th:block>
                     </h5> <span class="font-weight-bold d-block mt-4">Hello, <span th:text="${customer.firstName+' '+customer.lastName}"></span></span></span> 
                     <div th:switch="${order.status.name()}">
-                    	<span th:case="'NEW'">Đơn hàng của bạn đang chờ xác nhận</span>
+                    	<span th:case="'NEW'">Vui lòng chờ shop xác nhận đơn hàng</span>
                     </div>
                     
                     <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
@@ -59,16 +59,16 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div class="py-2"> <span class="d-block text-muted">Order Date</span> <span th:text="${order.orderTime}">12 Jan,2018</span> </div>
+                                        <div class="py-2"> <span class="d-block text-muted">Ngày đặt</span> <span th:text="${order.orderTime}">12 Jan,2018</span> </div>
                                     </td>
                                     <td>
-                                        <div class="py-2"> <span class="d-block text-muted">Mã đơn hàng</span> <span th:text="${order.id}">MT12332345</span> </div>
+                                        <div class="py-2"> <span class="d-block text-muted">Mã đặt hàng</span> <span th:text="${order.id}">MT12332345</span> </div>
                                     </td>
                                     <td>
-                                        <div class="py-2"> <span class="d-block text-muted">Payment</span> <span th:text="${order.paymentMethod.name()}"></span> </div>
+                                        <div class="py-2"> <span class="d-block text-muted">Phương thức thanh toán</span> <span th:text="${order.paymentMethod.name()}"></span> </div>
                                     </td>
                                     <td>
-                                        <div class="py-2"> <span class="d-block text-muted">Shiping Address</span> <span th:text="${order.address}">414 Advert Avenue, NY,USA</span> </div>
+                                        <div class="py-2"> <span class="d-block text-muted">Địa chỉ giao</span> <span th:text="${order.address}">414 Advert Avenue, NY,USA</span> </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -80,10 +80,10 @@
                                 <tr th:each="orderDetail: ${order.orderDetails}">
                                     <td width="20%"> <img th:src="@{'/images/'+${orderDetail.image}}" width="90"> </td>
                                     <td width="60%"> <span class="font-weight-bold" th:text="${orderDetail.name}">Men's Sports cap</span>
-                                        <div class="product-qty"> <span class="d-block">Quantity:<span th:text="${orderDetail.quantity}"></span></span> </div>
+                                        <div class="product-qty"> <span class="d-block">Số lượng:<span th:text="${orderDetail.quantity}"></span></span> </div>
                                     </td>
                                     <td width="20%">
-                                        <div class="text-right"> <span class="font-weight-bold" th:text="'$'+${orderDetail.quantity*orderDetail.value}">$67.50</span> </div>
+                                        <div class="text-right"> <span class="font-weight-bold" th:text="'$'+${orderDetail.value}">$67.50</span> </div>
                                     </td>
                                 </tr>
                               
@@ -96,7 +96,7 @@
                                 <tbody class="totals">
                                     <tr>
                                         <td>
-                                            <div class="text-left"> <span class="text-muted">Giá sản phẩm</span> </div>
+                                            <div class="text-left"> <span class="text-muted">Gía sản phẩm</span> </div>
                                         </td>
                                         <td>
                                             <div class="text-right"> <span th:text="'$'+${order.productCost}">$168.50</span> </div>
@@ -104,7 +104,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class="text-left"> <span class="text-muted">Giá ship</span> </div>
+                                            <div class="text-left"> <span class="text-muted">Gía giao hàng</span> </div>
                                         </td>
                                         <td>
                                             <div class="text-right"> <span th:text="'$'+${order.shippingCost}"></span> </div>
@@ -141,9 +141,9 @@
                         </div>
                     </div>
                    
-                    <p class="font-weight-bold mb-0">Thanks for shopping with us!</p> <span>Deskita Team</span>
+                    <p class="font-weight-bold mb-0">Cảm ơn quý khách đã mua sắm!</p> <span>Cửa hàng Deskita</span>
                 </div>
-                <div class="d-flex justify-content-between footer p-3"> <span>Need Help? visit our <a href="#"> help center</a></span> <span>12 June, 2020</span> </div>
+                <div class="d-flex justify-content-between footer p-3"> <span>Cần giúp đỡ? Hãy gọi cho chúng tôi<a href="#"> Trung tâm trợ giúp</a></span> <span>30 July, 2022</span> </div>
             </div>
         </form>
     </div>

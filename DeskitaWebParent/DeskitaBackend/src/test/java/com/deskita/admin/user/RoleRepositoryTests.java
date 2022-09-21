@@ -40,11 +40,10 @@ public class RoleRepositoryTests {
 		Role roleSalesperson=new Role("Salesperson","manage product, customers, shipping, orders and sales report");
 		Role roleEditor=new Role("Editor"," manage categories, brands, products, articles and menus");
 		Role roleShipper=new Role("Shipper","view products, view orders, and update order status");
-		Role roleAssistant=new Role("Assistant","manage questions and reviews");
 		
 		roleRepository.save(roleSalesperson);
 		roleRepository.save(roleEditor);
 		roleRepository.save(roleShipper);
-		roleRepository.save(roleAssistant);
+		
 	}
 }

@@ -4,17 +4,115 @@
 	th:replace="components/head_title :: page_head('Analytics - Deskita Admin')">
 <style>
 </style>
+<link
+	href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
+<style type="text/css">
+#btn-excel { 
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ color: white;
+ background-color: black;
+  border-radius: 5px}
+#btn-excel:hover {  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+#btn-chart { 
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ color: white;
+ background-color: black;
+ border-radius: 5px}
+#btn-chart:hover {  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+</style>
 	<div class="container">
 		<nav th:replace="components/Navigation :: navigation"></nav>
-		<h1>Thống kê theo đơn đặt hàng</h1>
-		<form th:action="@{/export/excel/order}" method="GET">
-		<input type="date" id="startDate" name="startDate">
-		<input type="date" id="endDate" name="endDate">
-		<button type="submit">Export</button>
-		</form>
-		
-	
+		<h2 style="font-weight: bolder;">Thống kê đơn hàng</h2>
+		<div style="display: flex; justify-content: space-around;">
+			<form th:action="@{/analytics/chart}" method="GET">
+				<input type="date" id="startDateChart" name="startDateChart">
+				<input type="date" id="endDateChart" name="endDateChart">
+				<button type="submit" id="btn-chart">Xem thống kê</button>
+			</form>
+			
+			<form th:action="@{/export/excel/order}" method="GET">
+				<input type="date" id="startDate" name="startDate"> <input
+					type="date" id="endDate" name="endDate">
+				<button type="submit" id="btn-excel">Xuất file excel</button>
+			</form>
+		</div>
+		<canvas id="myChart" width="400" height="400"></canvas>
 	</div>
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+
+		var metricsJson = /*[[${listOrder}]]*/'';
+	//	var metrics = JSON.parse(metricsJson);
+		const id = metricsJson.map(e=>e.id)
+		const total = metricsJson.map(e=>e.total)
+		/*]]>*/
+		$("#endDate").change(function() {
+			var startDate = document.getElementById("startDate").value;
+			var endDate = document.getElementById("endDate").value;
+
+			if ((Date.parse(startDate) >= Date.parse(endDate))) {
+				alert("Ngày kết thúc phải lớn hơn ngày bắt đầu!");
+				document.getElementById("endDate").value = "";
+			}
+		});
+		$("#endDateChart").change(function() {
+			var startDate = document.getElementById("startDateChart").value;
+			var endDate = document.getElementById("endDateChart").value;
+
+			if ((Date.parse(startDate) >= Date.parse(endDate))) {
+				alert("Ngày kết thúc phải lớn hơn ngày bắt đầu!");
+				document.getElementById("endDateChart").value = "";
+			}
+		});
+		const ctx = document.getElementById('myChart').getContext('2d');
+		let colors =[]
+		function generateColor() {
+			  var letters = '0123456789ABCDEF';
+			  var color = '#';
+			  for (var i = 0; i < 6; i++) {
+			    color += letters[Math.floor(Math.random() * 16)];
+			  }
+			  return color;
+			}
+		for(let i = 0; i< Object.values(metricsJson).length; i++)
+			{
+				colors.push(generateColor())
+			}
+		const myChart = new Chart(ctx,
+				{
+					type : 'bar',
+					data : {
+						labels : id,
+						datasets : [ {
+							label : 'Sơ đồ thống kê theo mã đơn hàng và tổng giá trị đơn hàng',
+							data : total,
+							backgroundColor : colors,
+							borderColor: colors,
+							borderWidth: 1
+						} ]
+					},
+					options: {
+				        scales: {
+				            y: {
+				                beginAtZero: true
+				            }
+				        }
+				    }
+				});
+	</script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+		integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

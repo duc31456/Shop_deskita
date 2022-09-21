@@ -1,62 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="components/head_title :: page_head('Users - Deskita Admin')">
+<head
+	th:replace="components/head_title :: page_head('Users - Deskita Admin')">
 <style>
-
 </style>
 <body>
-<div class="container">
-<nav th:replace="components/Navigation :: navigation"></nav>
-<h1>Users</h1>
-<a th:href="@{/users/new}">Create new user</a>
-<div>
-	<table>
-		<thead>
-			<tr>
-				<th>
-					User Id
-				</th>
-				<th>
-					Photos
-				</th>
-				<th>
-					First Name
-				</th>
-				<th>
-					Last Name
-				</th>
-				<th>
-					Roles
-				</th>
-				<th>
-					Enabled
-				</th>
-				<th>Action</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="user:${listUsers}">
-				<th >[[${user.id}]]</th>
-				<th ></th>
-				<th >[[${user.firstName}]]</th>
-				<th >[[${user.lastName}]]</th>
-				<th >[[${user.roles}]]</th>
-				<th > <a th:if="${user.enabled==true}" class="fas fa-check"	href="#"></a></th>
-				<th>					
-					<a class="fas fa-edit" th:href="@{'/users/edit/'+${user.id}}"></a>
-					<a class="far fa-trash-alt" th:href="@{'/users/delete/'+${user.id}}"></a>
-				</th>
-			</tr>
-		</tbody>
-	</table>
-	<nav aria-label="Page navigation example">
-  <ul class="pagination">
-     <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"><a class="page-link" th:href="@{'/users/page/'+${i}}" >[[${i}]]</a></li>
-  </ul>
-</nav>
-</div>
-</div>
-	
+	<div class="container">
+		<nav th:replace="components/Navigation :: navigation"></nav>
+		<h2 style="font-weight: bolder;">Quản lý bộ phận</h2>
+		<a th:href="@{/users/new}">Tạo tài khoản cho bộ phận mới</a>
+		<div>
+			<table class="table table-bordered table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Mã</th>
+						<th scope="col">Ảnh đại diện</th>
+						<th scope="col">Tên</th>
+						<th scope="col">Họ</th>
+						<th scope="col">Email</th>
+						<th scope="col">Vai trò</th>
+						<th scope="col">Trạng thái</th>
+						<th scope="col">Tùy chỉnh</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user:${listUsers}">
+						<th scope="row">[[${user.id}]]</th>
+						<th scope="row">
+						<div style="width: 110px; display: inline-block; margin: 10px;">
+								<img th:src="'/DeskitaAdmin/images/users/'+${user.photos}"
+									style="object-fit: contain; width: 100%; height: 100%;" />
+							</div>
+						</th>
+						<th scope="row">[[${user.firstName}]]</th>
+						<th scope="row">[[${user.lastName}]]</th>
+						<th scope="row">[[${user.email}]]</th>
+						<th scope="row">[[${user.roles}]]</th>
+						<th scope="row"><a th:if="${user.enabled==true}"
+							class="fas fa-check" href="#"></a></th>
+						<th scope="row"> <a
+							class="far fa-trash-alt" th:href="@{'/users/delete/'+${user.id}}"></a>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"><a
+						class="page-link" th:href="@{'/users/page/'+${i}}">[[${i}]]</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
 </body>
 </html>

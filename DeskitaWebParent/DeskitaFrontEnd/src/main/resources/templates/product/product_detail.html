@@ -94,19 +94,19 @@ p{
 			
 				<h3 th:text="${product.name}" style="font-weight: bold"> </h3>
 				<div>
-				<p style="font-weight: bold">Nội dung ngắn: </p>
+				<p style="font-weight: bold">Mô tả ngắn: </p>
 				<p th:text=${product.shortDescription}></p>	
 				</div>
 				
 				<br>
 				<div>
-				<p style="font-weight: bold">Nội dung: </p>
+				<p style="font-weight: bold">Thông tin đầy đủ: </p>
 				<p th:text=${product.fullDescription}></p>
 				</div>
 				
 				<br>
 				<div>
-					<span style="font-size: 20px">Thể loại: </span>
+					<span style="font-size: 20px">Tên loại sản phẩm: </span>
 					<span style="font-size: 20px" th:text="${product.category.getName()}"></span>
 				</div>
 				<br>
@@ -180,7 +180,7 @@ p{
 		  
 		  if(!$('#product_detail_name_selected').val()){
 			  event.preventDefault();
-			  alert("Vui lòng chọn variation")
+			  alert("Vui lòng chọn mẫu mua!")
 		  }
 		 
 		});

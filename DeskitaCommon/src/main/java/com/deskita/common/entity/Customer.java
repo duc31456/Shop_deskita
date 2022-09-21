@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +54,8 @@ public class Customer {
 	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
 	private Set<Order> orders=new HashSet<>();
 	
+	@OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+	private CartItem cartItem;
 	
 	public Integer getId() {
 		return id;

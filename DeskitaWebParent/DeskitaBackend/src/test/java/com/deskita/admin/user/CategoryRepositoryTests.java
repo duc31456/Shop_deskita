@@ -27,7 +27,7 @@ public class CategoryRepositoryTests {
 	public void testCategory() {
 		Category category=new Category("May anh");
 		categoryRepository.save(category);
-		User user=userRepository.findById(4).get();
-		System.out.println(user);
+		//User user=userRepository.findById(4).get();
+		//System.out.println(user);
 	}
 }
